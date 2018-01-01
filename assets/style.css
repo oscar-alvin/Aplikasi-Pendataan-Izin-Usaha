@@ -1,0 +1,41 @@
+body {
+	margin:20px;
+	font-family: tahoma;
+	/*background:url('img/background.jpg');*/
+}
+hr {
+	border:#000000 solid 1px;
+}
+.form-container {
+	margin:0 auto;
+	width:350px;
+	height:auto;
+	-moz-border-radius:10px;
+	box-shadow:0px 0px 0px 5px #8C4B01;
+	background:#ffffff;
+	opacity:.9;
+}
+.form-container h1{
+	margin:10px;
+	text-align:center;
+	background:#F8F8F8;
+	text-transform:uppercase;
+}
+.form-login {
+	display:inside-block;
+	width:300px;
+	height:auto;
+	margin:10px;
+	padding:10px;
+}
+
+.content {
+	background:#ffffff;
+	border: 1px solid #000000;
+	color:#000000;
+	margin:100px;
+	padding:10px;
+	width:75%;
+	height:auto;
+	opacity:.7;
+}
