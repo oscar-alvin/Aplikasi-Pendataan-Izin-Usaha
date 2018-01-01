@@ -1,0 +1,405 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="report name" pageWidth="842" pageHeight="595" orientation="Landscape" columnWidth="802" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="cfdcf601-1fc7-41a2-86c0-1c8c279c596a">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<style name="table">
+		<box>
+			<pen lineWidth="1.0" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table_TH" mode="Opaque" backcolor="#F0F8FF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table_CH" mode="Opaque" backcolor="#BFE1FF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table_TD" mode="Opaque" backcolor="#FFFFFF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 1">
+		<box>
+			<pen lineWidth="1.0" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 1_TH" mode="Opaque" backcolor="#F0F8FF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 1_CH" mode="Opaque" backcolor="#BFE1FF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 1_TD" mode="Opaque" backcolor="#FFFFFF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 2">
+		<box>
+			<pen lineWidth="1.0" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 2_TH" mode="Opaque" backcolor="#F0F8FF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 2_CH" mode="Opaque" backcolor="#BFE1FF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 2_TD" mode="Opaque" backcolor="#FFFFFF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<subDataset name="komuditi" uuid="e73b9b36-207b-4834-8065-252a3cff37ad">
+		<parameter name="JP" class="java.lang.String">
+			<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+		</parameter>
+		<parameter name="kab" class="java.lang.String">
+			<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+		</parameter>
+		<parameter name="PU" class="java.lang.String">
+			<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+		</parameter>
+		<parameter name="KU" class="java.lang.String">
+			<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+		</parameter>
+		<queryString>
+			<![CDATA[SELECT NAMA_PERUSAHAAN, ALAMAT_PERUSAHAAN, NO_TLP, FAX,
+MODAL_SENDIRI, OMSET_PERTAHUN, TOTAL_ASET, NAMA_PENGURUS, NO_TDP
+FROM tabel_master
+JOIN (tabel_data_pemilik) USING (id_master)
+JOIN (tabel_data_lokasi)  USING (id_master)
+JOIN (tabel_data_kegiatan)USING (id_master)
+WHERE tabel_master.JENIS_PERUSAHAAN = '$P!{JP}' AND tabel_data_lokasi.nama_kab_lokasi = '$P!{kab}'
+AND (tabel_data_kegiatan.PRODUK_UTAMA  = '$P!{PU}' OR tabel_data_kegiatan.PRODUK_LAIN = '$P!{PU}')
+AND  tabel_data_kegiatan.KEDUDUKAN_USAHA = '$P!{KU}']]>
+		</queryString>
+		<field name="NAMA_PERUSAHAAN" class="java.lang.String">
+			<fieldDescription><![CDATA[]]></fieldDescription>
+		</field>
+		<field name="ALAMAT_PERUSAHAAN" class="java.lang.String">
+			<fieldDescription><![CDATA[]]></fieldDescription>
+		</field>
+		<field name="NO_TLP" class="java.lang.String">
+			<fieldDescription><![CDATA[]]></fieldDescription>
+		</field>
+		<field name="FAX" class="java.lang.String">
+			<fieldDescription><![CDATA[]]></fieldDescription>
+		</field>
+		<field name="MODAL_SENDIRI" class="java.lang.Double">
+			<fieldDescription><![CDATA[]]></fieldDescription>
+		</field>
+		<field name="OMSET_PERTAHUN" class="java.lang.Double">
+			<fieldDescription><![CDATA[]]></fieldDescription>
+		</field>
+		<field name="TOTAL_ASET" class="java.lang.Double">
+			<fieldDescription><![CDATA[]]></fieldDescription>
+		</field>
+		<field name="NAMA_PENGURUS" class="java.lang.String">
+			<fieldDescription><![CDATA[]]></fieldDescription>
+		</field>
+		<field name="NO_TDP" class="java.lang.String">
+			<fieldDescription><![CDATA[]]></fieldDescription>
+		</field>
+		<group name="NAMA_PERUSAHAAN">
+			<groupExpression><![CDATA[$F{NAMA_PERUSAHAAN}]]></groupExpression>
+		</group>
+	</subDataset>
+	<parameter name="kabupaten" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="jenis_perusahaan" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="produk_utama" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="kedudukanUSH" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[select 'coba' from dual]]>
+	</queryString>
+	<field name="coba" class="java.lang.String"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="67" splitType="Stretch">
+			<staticText>
+				<reportElement uuid="f468bb2a-6aeb-4296-b8d8-cdc0c45d62bb" x="164" y="0" width="438" height="65"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial" size="13" isBold="true" isItalic="true"/>
+				</textElement>
+				<text><![CDATA[DINAS PERINDUSTRIAN, PERDAGANGAN, KOPERASI DAN UMKM KOTA SALATIGA
+LAPORAN BERDASARKAN KOMUDITI]]></text>
+			</staticText>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="105" splitType="Stretch">
+			<staticText>
+				<reportElement uuid="cc74bf03-d78c-4586-b216-3a744abeeed5" x="0" y="0" width="116" height="20"/>
+				<textElement textAlignment="Right"/>
+				<text><![CDATA[PROPINSI : ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="03bc9c55-6347-409e-b260-f7d8974a54e9" x="0" y="20" width="116" height="20"/>
+				<textElement textAlignment="Right"/>
+				<text><![CDATA[KABUPATEN / KOTA : ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="c4cbe90b-8110-4fa1-ba00-0baa3fd663e1" x="0" y="40" width="116" height="20"/>
+				<textElement textAlignment="Right"/>
+				<text><![CDATA[BENTUK USAHA : ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="6456551e-f0bc-4352-804a-758679d6a230" x="0" y="60" width="116" height="20"/>
+				<textElement textAlignment="Right"/>
+				<text><![CDATA[KOMUDITI : ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="d924e5ad-4039-4622-b003-648fbb26b435" x="0" y="80" width="116" height="20"/>
+				<textElement textAlignment="Right"/>
+				<text><![CDATA[KEDUDUKAN USAHA : ]]></text>
+			</staticText>
+			<textField>
+				<reportElement uuid="15196cf0-5fbb-4a67-8098-8df5ebc02a91" x="116" y="20" width="338" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$P{kabupaten}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="562d663e-81a4-4e76-8c7d-9093b45550b1" x="116" y="40" width="338" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$P{jenis_perusahaan}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="acbd6958-a05a-402b-b964-5988362847a1" x="116" y="60" width="338" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$P{produk_utama}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="2f43d718-82b7-4141-807f-a398966823ed" x="116" y="80" width="338" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$P{kedudukanUSH}]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageHeader>
+	<detail>
+		<band height="312" splitType="Stretch">
+			<componentElement>
+				<reportElement uuid="75a9a9e7-46a7-48fa-878a-17a4e4bf15a8" key="table 2" style="table 2" x="0" y="0" width="802" height="293"/>
+				<jr:table xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd" whenNoDataType="AllSectionsNoDetail">
+					<datasetRun subDataset="komuditi" uuid="5a21cfa7-0fad-4bee-bc90-44e342f6dc18">
+						<datasetParameter name="JP">
+							<datasetParameterExpression><![CDATA[$P{jenis_perusahaan}]]></datasetParameterExpression>
+						</datasetParameter>
+						<datasetParameter name="kab">
+							<datasetParameterExpression><![CDATA[$P{kabupaten}]]></datasetParameterExpression>
+						</datasetParameter>
+						<datasetParameter name="PU">
+							<datasetParameterExpression><![CDATA[$P{produk_utama}]]></datasetParameterExpression>
+						</datasetParameter>
+						<datasetParameter name="KU">
+							<datasetParameterExpression><![CDATA[$P{kedudukanUSH}]]></datasetParameterExpression>
+						</datasetParameter>
+						<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+					</datasetRun>
+					<jr:column width="25" uuid="5b05bf78-8349-4fe5-a000-d7f93798b9ef">
+						<jr:columnHeader height="30" rowSpan="1">
+							<staticText>
+								<reportElement uuid="3f1bee52-3842-46d4-95a6-c6c13f4daa18" style="table_CH" x="0" y="0" width="25" height="30"/>
+								<textElement textAlignment="Center"/>
+								<text><![CDATA[No]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:detailCell height="30" rowSpan="1">
+							<textField>
+								<reportElement uuid="e4a14979-0052-49c2-891e-de55f0bc371a" style="table_TD" x="0" y="0" width="25" height="30"/>
+								<textElement/>
+								<textFieldExpression><![CDATA[$V{REPORT_COUNT}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="90" uuid="1cce0314-b672-4fa9-acf0-c343f7c78c68">
+						<jr:columnHeader style="table 2_CH" height="30" rowSpan="1">
+							<staticText>
+								<reportElement uuid="db5e85b9-cb31-473d-9728-a0625552927d" x="0" y="0" width="90" height="30"/>
+								<textElement textAlignment="Center"/>
+								<text><![CDATA[Nama Perusahaan]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:detailCell style="table 2_TD" height="30" rowSpan="1">
+							<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+								<reportElement uuid="5ecf7355-c326-4bc0-93a6-8e2313869ecf" x="0" y="0" width="90" height="30"/>
+								<textElement/>
+								<textFieldExpression><![CDATA[$F{NAMA_PERUSAHAAN}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="90" uuid="2790abe1-288e-4b2a-af7c-293ff9e441fd">
+						<jr:columnHeader style="table 2_CH" height="30" rowSpan="1">
+							<staticText>
+								<reportElement uuid="0ccb955c-a99f-4529-b3a5-ae4876f18162" x="0" y="0" width="90" height="30"/>
+								<textElement textAlignment="Center"/>
+								<text><![CDATA[Alamat]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:detailCell style="table 2_TD" height="30" rowSpan="1">
+							<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+								<reportElement uuid="72d7358e-1733-4afc-bc26-87a1d348aac1" x="0" y="0" width="90" height="30"/>
+								<textElement/>
+								<textFieldExpression><![CDATA[$F{ALAMAT_PERUSAHAAN}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="90" uuid="0247c221-c0fb-4caa-9a25-36556974650a">
+						<jr:columnHeader style="table 2_CH" height="30" rowSpan="1">
+							<staticText>
+								<reportElement uuid="7bde2a21-030c-429b-8ce9-7bee611c9b06" x="0" y="0" width="90" height="30"/>
+								<textElement textAlignment="Center"/>
+								<text><![CDATA[No.Tlp]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:detailCell style="table 2_TD" height="30" rowSpan="1">
+							<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+								<reportElement uuid="8e898bd8-c84b-45ad-a3d1-b7344e4d7de3" x="0" y="0" width="90" height="30"/>
+								<textElement/>
+								<textFieldExpression><![CDATA[$F{NO_TLP}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="61" uuid="0a2bcdb0-f535-4b9c-acb5-79715ea2bcad">
+						<jr:columnHeader style="table 2_CH" height="30" rowSpan="1">
+							<staticText>
+								<reportElement uuid="e09a9310-f9c8-497b-b922-ece36fcad733" x="0" y="0" width="60" height="30"/>
+								<textElement textAlignment="Center"/>
+								<text><![CDATA[Fax]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:detailCell style="table 2_TD" height="30" rowSpan="1">
+							<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+								<reportElement uuid="355e0396-ac4a-49f2-b112-b9e299fdb9e5" x="0" y="0" width="61" height="30"/>
+								<textElement/>
+								<textFieldExpression><![CDATA[$F{FAX}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="90" uuid="725b2e0a-3f70-4134-a54c-8105b3ce3779">
+						<jr:columnHeader style="table 2_CH" height="30" rowSpan="1">
+							<staticText>
+								<reportElement uuid="1c63f1a8-cf03-4a0f-8acf-b03a7a4bab03" x="0" y="0" width="90" height="30"/>
+								<textElement textAlignment="Center"/>
+								<text><![CDATA[Modal]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:detailCell style="table 2_TD" height="30" rowSpan="1">
+							<textField isStretchWithOverflow="true" pattern="#,##0;#,##0-" isBlankWhenNull="true">
+								<reportElement uuid="23e1ca64-f8b3-4724-8360-d293d5c5011a" x="0" y="0" width="90" height="30"/>
+								<textElement/>
+								<textFieldExpression><![CDATA[$F{MODAL_SENDIRI}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="90" uuid="328ec937-33e7-4df0-85fb-766bdd8a2d04">
+						<jr:columnHeader style="table 2_CH" height="30" rowSpan="1">
+							<staticText>
+								<reportElement uuid="54440fa4-d4c8-41a6-9230-759360767170" x="0" y="0" width="90" height="30"/>
+								<textElement textAlignment="Center"/>
+								<text><![CDATA[Omset]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:detailCell style="table 2_TD" height="30" rowSpan="1">
+							<textField isStretchWithOverflow="true" pattern="#,##0;#,##0-" isBlankWhenNull="true">
+								<reportElement uuid="563030fb-69c8-4118-b6d4-be3b3f274404" x="0" y="0" width="90" height="30"/>
+								<textElement/>
+								<textFieldExpression><![CDATA[$F{OMSET_PERTAHUN}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="90" uuid="0a7c0d78-edbd-4092-a8ed-fa29dd591252">
+						<jr:columnHeader style="table 2_CH" height="30" rowSpan="1">
+							<staticText>
+								<reportElement uuid="4d5e6ac6-8dae-4ff8-990a-414bbbbff275" x="0" y="0" width="90" height="30"/>
+								<textElement textAlignment="Center"/>
+								<text><![CDATA[Aset]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:detailCell style="table 2_TD" height="30" rowSpan="1">
+							<textField isStretchWithOverflow="true" pattern="#,##0;#,##0-" isBlankWhenNull="true">
+								<reportElement uuid="6148a605-ce6b-414a-8304-0260e113b783" x="0" y="0" width="90" height="30"/>
+								<textElement/>
+								<textFieldExpression><![CDATA[$F{TOTAL_ASET}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="90" uuid="f9266593-ac3e-4297-896f-0a050185ef10">
+						<jr:columnHeader style="table 2_CH" height="30" rowSpan="1">
+							<staticText>
+								<reportElement uuid="b41da430-3852-43c6-813c-15dd9398ef9b" x="0" y="0" width="90" height="30"/>
+								<textElement textAlignment="Center"/>
+								<text><![CDATA[Nama Pengurus]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:detailCell style="table 2_TD" height="30" rowSpan="1">
+							<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+								<reportElement uuid="cbdb0643-26e8-425e-b4df-f393112b88d4" x="0" y="0" width="90" height="30"/>
+								<textElement/>
+								<textFieldExpression><![CDATA[$F{NAMA_PENGURUS}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="90" uuid="cd67d5ce-7b57-4501-9b42-05e67ab2e9fb">
+						<jr:columnHeader style="table 2_CH" height="30" rowSpan="1">
+							<staticText>
+								<reportElement uuid="991f0fc2-65c6-4c56-9b05-0339ce2488ac" x="0" y="0" width="90" height="30"/>
+								<textElement textAlignment="Center"/>
+								<text><![CDATA[No.TDP]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:detailCell style="table 2_TD" height="30" rowSpan="1">
+							<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+								<reportElement uuid="0a73df74-ec57-40e1-ae7b-26b8065168dd" x="0" y="0" width="90" height="30"/>
+								<textElement/>
+								<textFieldExpression><![CDATA[$F{NO_TDP}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+				</jr:table>
+			</componentElement>
+		</band>
+	</detail>
+	<pageFooter>
+		<band height="53" splitType="Stretch">
+			<staticText>
+				<reportElement uuid="9098c871-6977-493d-84a2-5d2cf0bd06b5" x="262" y="33" width="343" height="20"/>
+				<textElement/>
+				<text><![CDATA[PEMERINTAH KOTA SALATIGA Dinas Perindustrian dan Perdagangan
+]]></text>
+			</staticText>
+			<textField>
+				<reportElement uuid="335c3263-1b54-48a0-b081-9ec3829e2cb8" x="702" y="33" width="100" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+			<textField pattern="dd/MM/yyyy">
+				<reportElement uuid="fbf67238-9948-48c4-9269-376e7d2cfb97" x="2" y="33" width="100" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageFooter>
+</jasperReport>
